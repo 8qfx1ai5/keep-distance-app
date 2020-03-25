@@ -7,10 +7,11 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/ListDevicesButton"
+        android:id="@+id/listDevicesButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:onClick="searchedClicked"
         android:text="@string/button_lable_list_bluetooth_devices"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -18,12 +19,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/BlueToothDeviceList"
+        android:id="@+id/listViewBlueToothDevices"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ListDevicesButton" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSearchStatus" />
+
+    <TextView
+        android:id="@+id/textViewSearchStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listDevicesButton" />
+
 </android.support.constraint.ConstraintLayout>
