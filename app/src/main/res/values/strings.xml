@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">keep_distance</string>
+    <string name="button_lable_list_bluetooth_devices">List Devices</string>
 </resources>
