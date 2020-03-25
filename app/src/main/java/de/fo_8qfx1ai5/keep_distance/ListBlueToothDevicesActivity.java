@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -45,7 +46,7 @@ public class ListBlueToothDevicesActivity extends AppCompatActivity {
                if(name == null || name.equals("")){
                    bluetoothDevices.add(address + " - RSSI " + rssi + "dBm");
                } else {
-                   bluetoothDevices.add(name + " " + address + " - RSSI " + rssi + "dBm");
+                   bluetoothDevices.add(address + " - RSSI " + rssi + "dBm (" + name + ")");
                }
                arrayAdapter.notifyDataSetChanged();
            }
@@ -59,7 +60,17 @@ public class ListBlueToothDevicesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bluetooth_devices);
 
-        deviceList = findViewById(R.id.listViewBlueToothDevices);
+        deviceList = (ListView) findViewById(R.id.listViewBlueToothDevices);
+        deviceList.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView < ? > parent, View view,
+                                    int position, long id) {
+                Intent intent = new Intent(ListBlueToothDevicesActivity.this, SingleDeviceTrackingActivity.class);
+                intent.putExtra("device",parent.getItemAtPosition(position).toString());
+                startActivity(intent);
+            }
+        } );
+
         searchStatusText = findViewById(R.id.textViewSearchStatus);
         listDevicesButton = findViewById(R.id.listDevicesButton);
 
