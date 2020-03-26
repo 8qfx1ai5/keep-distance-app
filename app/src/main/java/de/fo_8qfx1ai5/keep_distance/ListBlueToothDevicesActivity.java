@@ -28,28 +28,31 @@ public class ListBlueToothDevicesActivity extends AppCompatActivity {
     ArrayList<String> bluetoothDevices = new ArrayList<>();
     ArrayAdapter arrayAdapter;
 
+    int counterDevicesWithName = 0;
+
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-           String action = intent.getAction();
-           Log.i("Action",action);
+            String action = intent.getAction();
+            Log.i("Action", action);
 
-           if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)){
-               searchStatusText.setText("Finished.");
-               listDevicesButton.setEnabled(true);
-           } else if(BluetoothDevice.ACTION_FOUND.equals(action)){
-               BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-               String name = device.getName();
-               String address = device.getAddress();
-               String rssi = Integer.toString(intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,Short.MIN_VALUE));
-               //Log.i("Device Found", "Name: "+ name + " Address: " + address + " RSSI: " + rssi);
-               if(name == null || name.equals("")){
-                   bluetoothDevices.add(address + " - RSSI " + rssi + "dBm");
-               } else {
-                   bluetoothDevices.add(address + " - RSSI " + rssi + "dBm (" + name + ")");
-               }
-               arrayAdapter.notifyDataSetChanged();
-           }
+            if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
+                searchStatusText.setText("Finished.");
+                listDevicesButton.setEnabled(true);
+            } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                String name = device.getName();
+                String address = device.getAddress();
+                String rssi_min = Integer.toString(intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE));
+
+                if (name == null || name.equals("")) {
+                    bluetoothDevices.add(counterDevicesWithName, rssi_min + "dBm\n" + address);
+                } else {
+                    bluetoothDevices.add(0, rssi_min + "dBm   (" + name + ")" + "\n" + address);
+                    counterDevicesWithName++;
+                }
+                arrayAdapter.notifyDataSetChanged();
+            }
         }
     };
 
@@ -61,20 +64,21 @@ public class ListBlueToothDevicesActivity extends AppCompatActivity {
         setContentView(R.layout.bluetooth_devices);
 
         deviceList = (ListView) findViewById(R.id.listViewBlueToothDevices);
-        deviceList.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+        deviceList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView < ? > parent, View view,
+            public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                bluetoothAdapter.cancelDiscovery();
                 Intent intent = new Intent(ListBlueToothDevicesActivity.this, SingleDeviceTrackingActivity.class);
-                intent.putExtra("device",parent.getItemAtPosition(position).toString());
+                intent.putExtra("device", parent.getItemAtPosition(position).toString());
                 startActivity(intent);
             }
-        } );
+        });
 
         searchStatusText = findViewById(R.id.textViewSearchStatus);
         listDevicesButton = findViewById(R.id.listDevicesButton);
 
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,bluetoothDevices);
+        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, bluetoothDevices);
 
         deviceList.setAdapter(arrayAdapter);
 
@@ -86,10 +90,10 @@ public class ListBlueToothDevicesActivity extends AppCompatActivity {
         intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
         intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
 
-        registerReceiver(broadcastReceiver,intentFilter);
+        registerReceiver(broadcastReceiver, intentFilter);
     }
 
-    public void searchedClicked(View view){
+    public void searchedClicked(View view) {
         searchStatusText.setText("Searching ...");
         listDevicesButton.setEnabled(false);
         bluetoothDevices.clear();
