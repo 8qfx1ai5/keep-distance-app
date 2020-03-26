@@ -9,14 +9,14 @@ Target group could be workers or police officers running around in teams while h
  - discarded, GPS is maybe not useful for a range of 2 meters
 - Building an APP using direct WLAN communication
  - discarded, seams to be not feasible currently, effort unknown
-- Building an APP using BlueTooth signal strength
+- Building an APP using Bluetooth signal strength
  - accepted, feasible and attractive, because no additional tech needed
  
-# Logical requirements for the BlueTooth approach
+# Logical requirements for the Bluetooth approach
  
 - there must be an correlation between the signal strength and the distance between the devices
 - the signal must have an relevant precision in the range of 0-3 meters
-- everyone involved needs an BlueTooth device to be trackable
+- everyone involved needs an Bluetooth device to be trackable
 
 # Milestones for the prototype
 
@@ -24,7 +24,7 @@ First of all we need to figure out, that the logical requirements we have are fu
 All milestones are set to this main goal.
 
 1. Get an running Android-APP deployed to a mobile device
-2. Get access to the BlueTooth functionality and a list of surrounding devices
+2. Get access to the Bluetooth functionality and a list of surrounding devices
 3. Get detailed information about the devices over RSSI displayed
 4. Make Tests with a mobile device for multiple ranges and ensure the correlation
 5. Optimize the usability
@@ -48,7 +48,7 @@ If you need to take an average of multiple measurements to ignore peaks and devi
 
 # Conclusion
 
-I had a lot of learnings about android APP development, JAVA and BlueTooth in the last two days and maybe I get an other idea for a project.
+I had a lot of learnings about android APP development, JAVA and Bluetooth in the last two days and maybe I get an other idea for a project.
 On my research I found a lot of tutorials which described exactly what I tried to figure out. There for I suspected that other developers before me also failed.
 
 # Thanksgiving

@@ -1,4 +1,10 @@
 <resources>
-    <string name="app_name">keep_distance</string>
-    <string name="button_lable_list_bluetooth_devices">List Devices</string>
+    <string name="app_name">Distance keeper! - Prototype</string>
+    <string name="button_label_list_bluetooth_devices">List Bluetooth Devices</string>
+    <string name="text_view_welcome">This APP is a prototype and developed in focus on the corona crisis. The main goal was to track the distance between two persons to ensure the "social distancing".\n\nThe favored technology was Bluetooth and the signal strength. Unfortunately the first tests have shown, that this approach does not work as expected, because of multiple reasons like long refreshing time and a big signal variance through the devices.\n\nBut you can still use the app to list Bluetooth devices and their RSSI value.</string>
+    <string name="button_welcome">try it out</string>
+    <string name="button_label_single_device_tracking">start tracking</string>
+    <string name="button_label_single_device_tracking_with_address">%1$s -> start tracking</string>
+    <string name="text_view_final_search_message">Finished!</string>
+    <string name="text_view_running_search_message">Searching…</string>
 </resources>
