@@ -24,6 +24,7 @@ public class ListBluetoothDevicesActivity extends AppCompatActivity {
     TextView searchStatusText;
     Button listDevicesButton;
     ArrayList<String> bluetoothDevices = new ArrayList<>();
+    ArrayList<String> bluetoothDeviceAddresses = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
     BluetoothAdapter bluetoothAdapter;
 
@@ -43,19 +44,25 @@ public class ListBluetoothDevicesActivity extends AppCompatActivity {
                 searchStatusText.setText(R.string.text_view_final_search_message);
                 listDevicesButton.setEnabled(true);
             } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                // add new found device to the list
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                String name = device.getName();
-                String address = device.getAddress();
-                String rssi_min = Integer.toString(intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE));
 
-                if (name == null || name.equals("")) {
-                    bluetoothDevices.add(counterDevicesWithName, rssi_min + "dBm\n" + address);
-                } else {
-                    bluetoothDevices.add(0, rssi_min + "dBm   (" + name + ")" + "\n" + address);
-                    counterDevicesWithName++;
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                String address = device.getAddress();
+
+                // add new found device to the list, if already unknown
+                if (!bluetoothDeviceAddresses.contains(address)) {
+
+                    String name = device.getName();
+                    String rssi_min = Integer.toString(intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE));
+
+                    if (name == null || name.equals("")) {
+                        bluetoothDevices.add(counterDevicesWithName, rssi_min + "dBm\n" + address);
+                    } else {
+                        bluetoothDevices.add(0, rssi_min + "dBm   (" + name + ")" + "\n" + address);
+                        counterDevicesWithName++;
+                    }
+                    bluetoothDeviceAddresses.add(address);
+                    arrayAdapter.notifyDataSetChanged();
                 }
-                arrayAdapter.notifyDataSetChanged();
             }
         }
     };
@@ -107,6 +114,7 @@ public class ListBluetoothDevicesActivity extends AppCompatActivity {
         searchStatusText.setText(R.string.text_view_running_search_message);
         listDevicesButton.setEnabled(false);
         bluetoothDevices.clear();
+        bluetoothDeviceAddresses.clear();
         counterDevicesWithName = 0;
 
         // start new search
