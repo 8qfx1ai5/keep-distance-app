@@ -6,11 +6,11 @@ Target group could be workers or police officers running around in teams while h
 ## Approaches
 
 - Building an APP and observing the GPS signals
- - discarded, GPS is maybe not useful for a range of 2 meters
+  - discarded, GPS is maybe not useful for a range of 2 meters
 - Building an APP using direct WLAN communication
- - discarded, seams to be not feasible currently, effort unknown
+  - discarded, seams to be not feasible currently, effort unknown
 - Building an APP using Bluetooth signal strength
- - accepted, feasible and attractive, because no additional tech needed
+  - accepted, feasible and attractive, because no additional tech needed
  
 ## Logical requirements for the Bluetooth approach
  
