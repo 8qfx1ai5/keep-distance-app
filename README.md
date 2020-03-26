@@ -42,7 +42,7 @@ This is why I can not make multiple requests and take an average of the strength
 
 ## Result
 
-<img src="https://github.com/8qfx1ai5/keep-distance-app/blob/master/images/Screenshot_20200326_213045_de.fo_8qfx1ai5.keep_distance.jpg" width="100" /><img src="https://github.com/8qfx1ai5/keep-distance-app/blob/master/images/Screenshot_20200326_213105_de.fo_8qfx1ai5.keep_distance.jpg" width="100" /><img src="https://github.com/8qfx1ai5/keep-distance-app/blob/master/images/Screenshot_20200326_213146_de.fo_8qfx1ai5.keep_distance.jpg" width="100" />
+<img src="https://raw.githubusercontent.com/8qfx1ai5/keep-distance-app/master/images/Screenshot_20200326_213045_de.fo_8qfx1ai5.keep_distance.jpg" width="200" /><img src="https://raw.githubusercontent.com/8qfx1ai5/keep-distance-app/master/images/Screenshot_20200326_213105_de.fo_8qfx1ai5.keep_distance.jpg" width="200" /><img src="https://raw.githubusercontent.com/8qfx1ai5/keep-distance-app/master/images/Screenshot_20200326_213146_de.fo_8qfx1ai5.keep_distance.jpg" width="200" />
 
 The prototype is working, but it does not fit the requirements.
 The basic technology seams to be not usable as it was implemented and I have no idea how to improve this.
